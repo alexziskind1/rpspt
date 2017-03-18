@@ -19,6 +19,12 @@ export class PTItemListComponent implements OnInit {
     ngOnInit() {
         this.ptItems = ITEMS;
     }
+
+    public listItemTap(args: any) {
+        let lv = args.object;
+        let item = <IPTItem>lv.items[args.index];
+        alert(item.title);
+    }
 }
 
 const ITEMS: IPTItem[] = [
