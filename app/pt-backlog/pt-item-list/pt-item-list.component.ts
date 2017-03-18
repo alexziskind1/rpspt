@@ -7,7 +7,8 @@ import IPTItem = PTDomain.IPTItem;
 @Component({
     moduleId: module.id,
     selector: 'pt-item-list',
-    templateUrl: 'pt-item-list.component.html'
+    templateUrl: 'pt-item-list.component.html',
+    styleUrls: ['pt-item-list.component.css']
 })
 export class PTItemListComponent implements OnInit {
     public ptItems: IPTItem[];

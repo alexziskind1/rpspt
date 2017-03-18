@@ -1,5 +1,8 @@
 <ListView [items]="ptItems">
-    <template let-item="item" let-i="index">
-        <Label [text]="item.title"></Label>
+    <template let-item="item" let-i="index" let-oddrow="odd" let-evenrow="even">
+        <StackLayout>
+            <Label [class.odd-row]="oddrow" [class.even-row]="evenrow" [text]="item.title"></Label>
+            <Label text="row idx {{i}}" textWrap="true"></Label>
+        </StackLayout>
     </template>
 </ListView>
