@@ -8,12 +8,24 @@ import IPTItem = PTDomain.IPTItem;
     moduleId: module.id,
     selector: 'pt-item-list',
     template: `
-        <ListView [items]="ptItems">
+        <ListView class="items-list" [items]="ptItems">
             <template let-item="item" let-i="index">
-                <Label [text]="item.title"></Label>
+                <Label class="li-title" [text]="item.title"></Label>
             </template>
         </ListView>
-    `
+    `,
+    styles: [
+        `
+        .items-list {
+            height: 50%;
+        }
+
+        .li-title {
+            font-size: 14;
+            color: red;
+        }
+        `
+    ]
 })
 export class PTItemListComponent implements OnInit {
     public ptItems: IPTItem[];
