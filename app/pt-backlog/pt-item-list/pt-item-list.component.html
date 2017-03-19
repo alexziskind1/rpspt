@@ -1,4 +1,4 @@
-<ListView [items]="ptItems" (itemTap)="listItemTap($event)">
+<ListView class="items-list" [items]="ptItems" (itemTap)="listItemTap($event)">
     <template let-item="item" let-i="index" let-oddrow="odd" let-evenrow="even">
         <StackLayout>
             <Label class="li-title" [text]="item.title"></Label>
