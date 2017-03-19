@@ -14,14 +14,13 @@ import IPTItem = PTDomain.IPTItem;
 export class PTItemComponent implements OnInit {
 
     public item: IPTItem;
-    public get itemTitle() {
-        return this.item ? this.item.title : '';
-    }
 
     constructor() { }
 
     ngOnInit() {
-        this.item = ITEM;
+        setTimeout(() => {
+            this.item = ITEM;
+        }, 2000);
     }
 }
 
