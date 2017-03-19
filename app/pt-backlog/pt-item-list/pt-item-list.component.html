@@ -1,8 +1,9 @@
 <ListView class="items-list" [items]="ptItems" (itemTap)="listItemTap($event)">
-    <template let-item="item" let-i="index" let-oddrow="odd" let-evenrow="even">
-        <StackLayout>
-            <Label class="li-title" [text]="item.title"></Label>
-            <Label [class.odd-row]="oddrow" [class.even-row]="evenrow" text="row idx {{i}}"></Label>
-        </StackLayout>
+    <template let-item="item" let-i="index">
+        <GridLayout class="li-wrapper" rows="60" columns="10, 50,  *, 100">
+            <StackLayout class="li-info-wrapper" col="2">
+                <Label class="li-title" [text]="item.title"></Label>
+            </StackLayout>
+        </GridLayout>
     </template>
 </ListView>
