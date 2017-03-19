@@ -6,3 +6,11 @@
     font-size: 14;
     color: red;
 }
+
+.odd-row {
+    color: blue;
+}
+
+.even-row {
+    color: green;
+}
