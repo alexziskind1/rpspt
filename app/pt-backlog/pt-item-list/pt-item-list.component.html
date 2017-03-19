@@ -2,7 +2,7 @@
     <template let-item="item" let-i="index">
         <GridLayout class="li-wrapper" rows="60" columns="10, 50,  *, 100">
             <StackLayout class="li-indicator" col="0">
-                <Label text="i"></Label>
+                <Label [class]="getIndicatorClass(item)"></Label>
             </StackLayout>
 
             <GridLayout col="1" class="li-avatar">
