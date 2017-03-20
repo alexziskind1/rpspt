@@ -2,6 +2,7 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 
 import { ModalDialogService, ModalDialogOptions } from 'nativescript-angular/modal-dialog';
 
+import { BacklogService } from '../../services/backlog.service';
 import { ItemTypeEnum, PriorityEnum, StatusEnum } from '../../shared/static-data';
 import { PTDomain } from '../../typings/domain';
 import IPTItem = PTDomain.IPTItem;
@@ -20,14 +21,16 @@ export class PTItemComponent implements OnInit {
     public item: IPTItem;
 
     constructor(
+        private backlogService: BacklogService,
         private modalService: ModalDialogService,
         private vcRef: ViewContainerRef
     ) { }
 
     ngOnInit() {
-        //setTimeout(() => {
-        this.item = ITEM;
-        //}, 2000);
+        this.backlogService.getItem('2')
+            .then((item) => {
+                this.item = item;
+            });
     }
 
     public showTypeModal() {
@@ -45,6 +48,3 @@ export class PTItemComponent implements OnInit {
         });
     }
 }
-
-const ITEM: IPTItem =
-    { id: '1', title: 'item 1', description: 'item 1 desc', estimate: 5, priority: PriorityEnum.Low, status: StatusEnum.Open, tasks: [], type: ItemTypeEnum.Bug, dateCreated: new Date(), dateModified: new Date(), comments: [], assignee: null };

@@ -9,7 +9,7 @@
             <Label col="0" text="Type" class="form-field-col"></Label>
 
             <StackLayout col="1" #itemTypeName orientation="horizontal" class="form-field-col right">
-                <Label [text]="item.type" class="input"></Label>
+                <Label *ngIf="item" [text]="item.type" class="input"></Label>
             </StackLayout>
 
         </GridLayout>
