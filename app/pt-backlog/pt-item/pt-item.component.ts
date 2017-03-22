@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 
 import { ModalDialogService, ModalDialogOptions } from 'nativescript-angular/modal-dialog';
+import { SegmentedBar, SegmentedBarItem } from 'ui/segmented-bar';
 
 import { BacklogService } from '../../services/backlog.service';
 import { ItemTypeEnum, PriorityEnum, StatusEnum } from '../../shared/static-data';
@@ -18,13 +19,25 @@ import { ItemTypePickerModalComponent } from "../shared/item-type-picker-modal.c
 })
 export class PTItemComponent implements OnInit {
 
+    private _itemDetailScreens = [
+        { title: 'Details', routePath: 'pt-item-details' },
+        { title: 'Tasks', routePath: 'pt-item-tasks' },
+        { title: 'Chitchat', routePath: 'pt-item-chitchat' }
+    ];
+    public myNavItems: Array<SegmentedBarItem> = [];
     public item: IPTItem;
 
     constructor(
         private backlogService: BacklogService,
         private modalService: ModalDialogService,
         private vcRef: ViewContainerRef
-    ) { }
+    ) {
+        for (let i = 0; i < this._itemDetailScreens.length; i++) {
+            let tmpSegmentedBarItem: SegmentedBarItem = <SegmentedBarItem>new SegmentedBarItem();
+            tmpSegmentedBarItem.title = this._itemDetailScreens[i].title;
+            this.myNavItems.push(tmpSegmentedBarItem);
+        }
+    }
 
     ngOnInit() {
         this.backlogService.getItem('2')
@@ -33,18 +46,9 @@ export class PTItemComponent implements OnInit {
             });
     }
 
-    public showTypeModal() {
-        const options: ModalDialogOptions = {
-            context: { itemTitle: this.item.title, promptMsg: "Select item type" },
-            fullscreen: true,
-            viewContainerRef: this.vcRef
-        };
-
-        this.modalService.showModal(ItemTypePickerModalComponent, options).then((res: ItemTypeEnum) => {
-            if (res) {
-                console.log(res);
-                this.item.type = res;
-            }
-        });
+    public selectedItemDetailScreenIndexChanged(segBar: SegmentedBar) {
+        let newIndex = segBar.selectedIndex;
+        console.log('selected index: ' + newIndex);
     }
+
 }
