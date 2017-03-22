@@ -17,6 +17,8 @@ import { ItemTypePickerModalComponent } from "../shared/item-type-picker-modal.c
 export class PTItemDetailsComponent implements OnInit {
     public item: IPTItem;
 
+    public formFieldGridCols = '90, *, 90 ';
+
     constructor(
         private backlogService: BacklogService,
         private modalService: ModalDialogService,
@@ -24,7 +26,7 @@ export class PTItemDetailsComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.backlogService.getItem('2')
+        this.backlogService.getItem('1')
             .then((item) => {
                 this.item = item;
             });
