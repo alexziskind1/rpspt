@@ -4,7 +4,7 @@ import { LoginComponent } from './pt-login.component';
 
 @NgModule({
     imports: [],
-    exports: [],
+    exports: [LoginComponent],
     declarations: [LoginComponent],
     providers: [],
 })
