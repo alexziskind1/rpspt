@@ -1,7 +1,13 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ViewContainerRef } from '@angular/core';
 
 import { RadSideDrawerComponent, SideDrawerType } from 'nativescript-telerik-ui/sidedrawer/angular';
 import { SideDrawerLocation } from 'nativescript-telerik-ui/sidedrawer';
+import { ModalDialogService, ModalDialogOptions } from 'nativescript-angular/modal-dialog';
+
+import { BacklogService } from '../services';
+import { AddItemModalComponent } from "./shared/add-item-modal.component";
+import { PTDomain } from '../typings/domain';
+import INewItem = PTDomain.INewItem;
 
 
 @Component({
@@ -16,7 +22,9 @@ export class PTBacklogComponent implements OnInit {
 
     public selectedViewIndex: number;
 
-    constructor() {
+    constructor(private backlogService: BacklogService,
+        private modalService: ModalDialogService,
+        private vcRef: ViewContainerRef) {
         this.selectedViewIndex = 1;
     }
 
@@ -33,6 +41,20 @@ export class PTBacklogComponent implements OnInit {
 
     public selectFilteredView(itemFilterIndex: number, pageTitle: string) {
         this.selectedViewIndex = itemFilterIndex;
+    }
+
+    public showAddItemModal() {
+        const options: ModalDialogOptions = {
+            context: { promptMsg: "Add item" },
+            fullscreen: true,
+            viewContainerRef: this.vcRef
+        };
+
+        this.modalService.showModal(AddItemModalComponent, options).then((newItem: INewItem) => {
+            if (newItem != null) {
+                this.backlogService.addNewPTItem(newItem, null);
+            }
+        });
     }
 
     public logoutTap() {

@@ -8,6 +8,7 @@ import { BacklogService } from '../services/backlog.service';
 import { PTBacklogComponent } from './pt-backlog.component';
 import { PTItemListComponent } from './pt-item-list/pt-item-list.component';
 import { PTItemModule } from './pt-item/pt-item.module';
+import { AddItemModalComponent } from './shared/add-item-modal.component';
 import { PipesModule } from './pipes/pipes.module';
 
 @NgModule({
@@ -20,7 +21,11 @@ import { PipesModule } from './pipes/pipes.module';
     declarations: [
         SIDEDRAWER_DIRECTIVES,
         PTBacklogComponent,
-        PTItemListComponent
+        PTItemListComponent,
+        AddItemModalComponent
+    ],
+    entryComponents: [
+        AddItemModalComponent
     ],
     providers: [
         BacklogService

@@ -4,7 +4,14 @@ import * as _ from 'lodash';
 
 import { ItemTypeEnum, PriorityEnum, StatusEnum } from '../shared/static-data';
 import { PTDomain } from '../typings/domain';
+import IUser = PTDomain.IUser;
 import IPTItem = PTDomain.IPTItem;
+import ITask = PTDomain.ITask;
+import IComment = PTDomain.IComment;
+import INewItem = PTDomain.INewItem;
+import INewTask = PTDomain.INewTask;
+import INewComment = PTDomain.INewComment;
+
 
 @Injectable()
 export class BacklogService {
@@ -21,6 +28,24 @@ export class BacklogService {
     public getItem(id: string) {
         let selectedItem = _.find(this._allItems, i => i.id == id);
         return Promise.resolve(selectedItem);
+    }
+
+    public addNewPTItem(newItem: INewItem, assignee: IUser) {
+        let item: IPTItem = {
+            id: _.uniqueId(),
+            title: newItem.title,
+            description: newItem.description,
+            type: newItem.type,
+            estimate: 0,
+            priority: PriorityEnum.Medium,
+            status: StatusEnum.Open,
+            assignee: assignee,
+            tasks: [],
+            comments: [],
+            dateCreated: new Date(),
+            dateModified: new Date()
+        };
+        this._allItems.push(item);
     }
 }
 
