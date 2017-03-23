@@ -7,7 +7,12 @@ import { SideDrawerLocation } from 'nativescript-telerik-ui/sidedrawer';
 @Component({
     moduleId: module.id,
     selector: 'pt-backlog',
-    templateUrl: 'pt-backlog.component.html'
+    templateUrl: 'pt-backlog.component.html',
+    styles: [`
+        .side-drawer-panel {
+            background-color: #333333;
+        }
+    `]
 })
 export class PTBacklogComponent implements OnInit {
     private _drawer: SideDrawerType;
