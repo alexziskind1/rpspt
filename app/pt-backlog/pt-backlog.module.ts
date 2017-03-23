@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 //nativescript imports
 import { NativeScriptModule } from "nativescript-angular/platform";
+import { SIDEDRAWER_DIRECTIVES } from "nativescript-telerik-ui/sidedrawer/angular";
 
 import { BacklogService } from '../services/backlog.service';
 import { PTBacklogComponent } from './pt-backlog.component';
@@ -17,6 +18,7 @@ import { PipesModule } from './pipes/pipes.module';
     ],
     exports: [PTBacklogComponent],
     declarations: [
+        SIDEDRAWER_DIRECTIVES,
         PTBacklogComponent,
         PTItemListComponent
     ],
