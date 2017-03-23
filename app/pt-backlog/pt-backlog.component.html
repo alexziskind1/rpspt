@@ -14,13 +14,18 @@
             </StackLayout>
 
             <StackLayout row="1">
-                <Button text="MY ITEMS"></Button>
-                <Button text="OPEN ITEMS"></Button>
-                <Button text="FINISHED ITEMS"></Button>
+                <Button (tap)="selectFilteredView(0, 'MY ITEMS')" [class]="selectedViewIndex === 0 ? 'slide-out-btn-selected' : 'slide-out-btn' "
+                    text="MY ITEMS"></Button>
+
+                <Button (tap)="selectFilteredView(1, 'OPEN ITEMS')" [class]="selectedViewIndex === 1 ? 'slide-out-btn-selected' : 'slide-out-btn' "
+                    text="OPEN ITEMS"></Button>
+
+                <Button (tap)="selectFilteredView(2, 'FINISHED ITEMS')" [class]="selectedViewIndex === 2 ? 'slide-out-btn-selected' : 'slide-out-btn' "
+                    text="FINISHED ITEMS"></Button>
             </StackLayout>
 
             <StackLayout row="2">
-                <Button text="LOGOUT" class="slide-out-btn" (tap)="logoutTap()" style="color: pink"></Button>
+                <Button text="LOGOUT" class="slide-out-btn" (tap)="logoutTap()"></Button>
             </StackLayout>
         </GridLayout>
     </StackLayout>

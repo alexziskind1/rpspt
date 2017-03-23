@@ -8,20 +8,17 @@ import { SideDrawerLocation } from 'nativescript-telerik-ui/sidedrawer';
     moduleId: module.id,
     selector: 'pt-backlog',
     templateUrl: 'pt-backlog.component.html',
-    styles: [`
-        .side-drawer-panel {
-            background-color: #333333;
-        }
-        .slide-out-btn {
-            color: red;
-        }
-    `]
+    styleUrls: ['pt-backlog.component.css']
 })
 export class PTBacklogComponent implements OnInit {
     private _drawer: SideDrawerType;
     @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
 
-    constructor() { }
+    public selectedViewIndex: number;
+
+    constructor() {
+        this.selectedViewIndex = 1;
+    }
 
     ngOnInit() { }
 
@@ -32,6 +29,10 @@ export class PTBacklogComponent implements OnInit {
 
     public showSlideout() {
         this._drawer.showDrawer();
+    }
+
+    public selectFilteredView(itemFilterIndex: number, pageTitle: string) {
+        this.selectedViewIndex = itemFilterIndex;
     }
 
     public logoutTap() {
