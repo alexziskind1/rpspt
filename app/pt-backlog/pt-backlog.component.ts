@@ -12,6 +12,9 @@ import { SideDrawerLocation } from 'nativescript-telerik-ui/sidedrawer';
         .side-drawer-panel {
             background-color: #333333;
         }
+        .slide-out-btn {
+            color: red;
+        }
     `]
 })
 export class PTBacklogComponent implements OnInit {
