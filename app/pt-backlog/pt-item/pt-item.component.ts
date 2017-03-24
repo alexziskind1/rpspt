@@ -3,7 +3,7 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ModalDialogService, ModalDialogOptions } from 'nativescript-angular/modal-dialog';
 import { SegmentedBar, SegmentedBarItem } from 'ui/segmented-bar';
 
-import { BacklogService } from '../../services/backlog.service';
+import { BacklogService } from '../../services';
 import { ItemTypeEnum, PriorityEnum, StatusEnum } from '../../shared/static-data';
 import { PTDomain } from '../../typings/domain';
 import IPTItem = PTDomain.IPTItem;
