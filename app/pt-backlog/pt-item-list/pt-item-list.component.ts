@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { BacklogService } from '../../services/backlog.service';
+import { BacklogService } from '../../services';
 import { ItemTypeEnum, PriorityEnum, StatusEnum } from '../../shared/static-data';
 import { PTDomain } from '../../typings/domain';
 import IPTItem = PTDomain.IPTItem;
