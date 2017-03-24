@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 //nativescript imports
 import { NativeScriptModule } from "nativescript-angular/platform";
 
-import { BacklogService } from '../services/backlog.service';
+import { BacklogService } from '../services';
 import { PTBacklogComponent } from './pt-backlog.component';
 import { PTItemListComponent } from './pt-item-list/pt-item-list.component';
 import { PTItemModule } from './pt-item/pt-item.module';
