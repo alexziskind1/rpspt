@@ -35,11 +35,12 @@
         <GridLayout class="backlog-container" rows="*, 60">
 
             <GridLayout row="0" class="list-container">
-                <pt-item></pt-item>
+                <pt-item-list></pt-item-list>
             </GridLayout>
 
             <StackLayout row="1" class="btn-add-wrapper">
-                <Button text="Add" class="btn-add" (tap)="showAddItemModal()"></Button>
+                <Button text="Add" class="btn-add" tap="btnTapped()" (doubleTap)="onDoubleTap()" (longPress)="onLongPress()" (pan)="onPan()"
+                    (pinch)="onPinch()"></Button>
             </StackLayout>
 
         </GridLayout>
