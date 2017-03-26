@@ -53,7 +53,10 @@ export class LoginComponent implements OnInit {
             .subscribe(data => {
                 if (data === null) {
                     console.log('login failed');
-                    this.loginInputs.className = 'login-failed';
+                    this.loginAnimationReverse()
+                        .then(() => {
+                            this.loginInputs.className = 'login-failed';
+                        });
                 }
                 else {
                     console.log('login successful');
@@ -83,6 +86,17 @@ export class LoginComponent implements OnInit {
                     delay: 500
                 });
             });
+        });
+    }
+
+    private loginAnimationReverse() {
+        return this.btnLoginWrapper.animate({
+            scale: { x: 1, y: 1 },
+            backgroundColor: new Color('#555a97'),
+            duration: 200,
+            curve: enums.AnimationCurve.cubicBezier(0, .75, .22, 1)
+        }).then(() => {
+            this.btnLogin.opacity = 1;
         });
     }
 }
