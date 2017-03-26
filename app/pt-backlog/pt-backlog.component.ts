@@ -60,24 +60,4 @@ export class PTBacklogComponent implements OnInit {
     public logoutTap() {
         alert('LOGOUT');
     }
-
-    public onDoubleTap() {
-        console.log('double tap');
-    }
-
-    public onLongPress() {
-        console.log('long press');
-    }
-
-    public onPan() {
-        console.log('pan');
-    }
-
-    public onPinch() {
-        console.log('pinch');
-    }
-
-    public btnTapped() {
-        console.log('tapped 1');
-    }
 }

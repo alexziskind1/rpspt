@@ -39,8 +39,7 @@
             </GridLayout>
 
             <StackLayout row="1" class="btn-add-wrapper">
-                <Button text="Add" class="btn-add" tap="btnTapped()" (doubleTap)="onDoubleTap()" (longPress)="onLongPress()" (pan)="onPan()"
-                    (pinch)="onPinch()"></Button>
+                <Button text="Add" class="btn-add" (tap)="showAddItemModal()"></Button>
             </StackLayout>
 
         </GridLayout>
