@@ -34,6 +34,24 @@
 }
 
 .login-failed {
-  background-color: red;
-  transform: scale(0.5, 0.5);
+  animation-name: shake;
+  animation-duration: 0.5s;
+}
+
+@keyframes shake {
+  8%, 41% {
+    transform: translateX(-10);
+  }
+  25%, 58% {
+    transform: translateX(10);
+  }
+  75% {
+    transform: translateX(-5);
+  }
+  92% {
+    transform: translateX(5);
+  }
+  0%, 100% {
+    transform: translateX(0);
+  }
 }
