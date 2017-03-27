@@ -21,6 +21,8 @@
     "@angular/platform-browser": "2.4.3",
     "@angular/platform-browser-dynamic": "2.4.3",
     "@angular/router": "3.4.3",
+    "@types/faker": "^4.1.0",
+    "faker": "^4.1.0",
     "lodash": "^4.17.4",
     "nativescript-angular": "1.4.0",
     "nativescript-telerik-ui": "^1.6.1",
