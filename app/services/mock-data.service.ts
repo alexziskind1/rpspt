@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import * as fileSystemModule from 'file-system';
+
 import * as faker from 'faker';
 import * as _ from 'lodash';
 
