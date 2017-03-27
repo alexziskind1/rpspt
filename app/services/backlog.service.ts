@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import * as _ from 'lodash';
 
+import { MockDataService, UserService } from './';
 import { ItemTypeEnum, PriorityEnum, StatusEnum } from '../shared/static-data';
 import { PTDomain } from '../typings/domain';
 import IUser = PTDomain.IUser;
@@ -21,7 +22,10 @@ export class BacklogService {
         return this._allItems;
     }
 
-    constructor() {
+    constructor(
+        private mockDataService: MockDataService,
+        private userService: UserService
+    ) {
         this._allItems = ITEMS;
     }
 

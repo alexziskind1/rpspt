@@ -6,6 +6,7 @@ import { Observable, Observer } from "rxjs/Rx";
 import * as _ from 'lodash';
 
 //app imports
+import { MockDataService } from './mock-data.service';
 import { PTDomain } from '../typings/domain';
 import IUser = PTDomain.IUser;
 
@@ -26,7 +27,9 @@ export class UserService {
         });
     }
 
-    constructor() { }
+    constructor(private mockDataService: MockDataService) {
+        this._generatedUsers = this.mockDataService.generateUsers();
+    }
 
     public getUserAvatar(userId: string) {
         let user = _.find(this.users, (user) => user.id === userId);
