@@ -4,7 +4,8 @@ import { NgModule } from '@angular/core';
 import { NativeScriptModule } from "nativescript-angular/platform";
 import { SIDEDRAWER_DIRECTIVES } from "nativescript-telerik-ui/sidedrawer/angular";
 
-import { BacklogService, MockDataService } from '../services';
+import { BacklogService } from '../services';
+import { MockDataService } from '../services/mock-data.service';
 import { PTBacklogComponent } from './pt-backlog.component';
 import { PTItemListComponent } from './pt-item-list/pt-item-list.component';
 import { PTItemModule } from './pt-item/pt-item.module';
