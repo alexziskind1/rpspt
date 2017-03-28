@@ -67,4 +67,75 @@ export class MockDataService {
         return users;
     }
 
+    public generatePTItem(users: Array<IUser>): IPTItem {
+        let typeStr = ItemTypeEnum[_.random(1, 4)];
+        let priorityStr = PriorityEnum[_.random(1, 4)];
+        let statusStr = StatusEnum[_.random(1, 4)];
+
+        let ptItem: IPTItem = {
+            id: faker.random.uuid(),
+            title: this.toTitleCase(faker.lorem.words()),
+            dateCreated: faker.date.past(1),
+            dateModified: faker.date.past(1),
+            type: ItemTypeEnum[typeStr],
+            estimate: _.random(1, 24),
+            priority: PriorityEnum[priorityStr],
+            status: StatusEnum[statusStr],
+            assignee: _.sample(users),
+            tasks: this.generateTasks(),
+            comments: this.generateComments(users)
+        };
+
+        return ptItem;
+    }
+
+    public generatePTItems(users: Array<IUser>): Array<IPTItem> {
+        let items = _.times(constModule.NUM_PT_ITEMS, () => {
+            return this.generatePTItem(users);
+        });
+        return items;
+    }
+
+    public generateTasks(): Array<ITask> {
+        let numTasks = _.random(5, 20);
+        let tasks = _.times(numTasks, () => {
+            return this.generateTask();
+        });
+        return tasks;
+    }
+
+    public generateTask(): ITask {
+        let task: ITask = {
+            id: faker.random.uuid(),
+            title: this.toTitleCase(faker.lorem.words()),
+            dateCreated: faker.date.past(1),
+            dateModified: faker.date.past(1),
+            completed: faker.random.boolean()
+        };
+        return task;
+    }
+
+    public generateComments(users: Array<IUser>): Array<IComment> {
+        let numComments = _.random(0, 5);
+        let comments = _.times(numComments, () => {
+            return this.generateComment(users);
+        });
+        return comments;
+    }
+
+    public generateComment(users: Array<IUser>): IComment {
+        let comment: IComment = {
+            id: faker.random.uuid(),
+            title: this.toTitleCase(faker.lorem.sentence(20, 40)),
+            dateCreated: faker.date.past(1),
+            dateModified: faker.date.past(1),
+            user: _.sample(users)
+        };
+        return comment;
+    }
+
+
+    private toTitleCase(str) {
+        return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
+    }
 }
