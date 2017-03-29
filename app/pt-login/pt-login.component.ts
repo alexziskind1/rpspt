@@ -2,8 +2,10 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { Page } from 'ui/page';
 import { View } from 'ui/core/view';
+import { Button } from 'ui/button';
 import { Color } from "color";
 import * as enums from 'ui/enums';
+import { EventData } from 'data/observable';
 
 import { AuthenticationService } from '../services';
 import { DEMO_PASSWORD } from '../shared/constants';
@@ -41,6 +43,12 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.page.actionBarHidden = true;
+    }
+
+    public loginTapped(args: EventData) {
+        let btn = <Button>args.object;
+        //alert('login tapped: ' + args.object);
+        btn.text = 'Loggin in...';
     }
 
     public login() {
