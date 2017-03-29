@@ -45,8 +45,7 @@ export class LoginComponent implements OnInit {
         this.page.actionBarHidden = true;
     }
 
-    public loginTapped(args: EventData) {
-        let btn = <Button>args.object;
+    public loginTapped(btn: Button) {
         //alert('login tapped: ' + args.object);
         btn.text = 'Loggin in...';
     }

@@ -9,7 +9,7 @@
             <TextField hint="Username" class="login-field" [text]="loginModel.username" [isEnabled]="!isLoading"></TextField>
             <TextField hint="Password" class="login-field" secure="true" [text]="loginModel.password" [isEnabled]="!isLoading"></TextField>
             <StackLayout #btnLoginWrapper class="btn-login-wrapper">
-                <Button #btnLogin text="SIGN IN" class="btn-login" (tap)="loginTapped($event)" [isEnabled]="!isLoading"></Button>
+                <Button #btnLogin text="SIGN IN" class="btn-login" (tap)="loginTapped(btnLogin)" [isEnabled]="!isLoading"></Button>
             </StackLayout>
         </StackLayout>
 
