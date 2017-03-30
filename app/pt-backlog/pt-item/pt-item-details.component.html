@@ -4,11 +4,13 @@
 
             <StackLayout class="form-group">
                 <StackLayout class="input-field input-field-border">
-                    <TextView colSpan="3" hint="Enter title..." [text]="item.title" class="input"></TextView>
+                    <TextView colSpan="3" hint="Enter title..." [height]="textViewFieldHeight(item.title)" [ngModel]="item.title" (ngModelChange)="titleChange($event)"
+                        class="input"></TextView>
                 </StackLayout>
 
                 <StackLayout class="input-field">
-                    <TextView hint="Enter description..." [text]="item.description" class="input"></TextView>
+                    <TextView hint="Enter description..." [height]="textViewFieldHeight(item.description)" [ngModel]="item.description" (ngModelChange)="descriptionChange($event)"
+                        class="input"></TextView>
                 </StackLayout>
             </StackLayout>
 
@@ -44,7 +46,7 @@
                     <GridLayout rows="40" [columns]="formFieldGridCols">
                         <Label col="0" text="Priority" class="form-field-col"></Label>
                         <StackLayout col="1" class="form-field-col right">
-                            <Label [text]="item.priority" [class]="item.priority"></Label>
+                            <Label [text]="item.priority"></Label>
                         </StackLayout>
                     </GridLayout>
                 </StackLayout>

@@ -53,5 +53,9 @@ export class BacklogService {
         };
         this._allItems.push(item);
     }
+
+    public updatePtItem(item: IPTItem) {
+
+    }
 }
 

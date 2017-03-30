@@ -26,10 +26,29 @@ export class PTItemDetailsComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.backlogService.getItem('1')
-            .then((item) => {
-                this.item = item;
-            });
+        this.item = this.backlogService.items[0];
+    }
+
+    public textViewFieldHeight(value: string): number {
+        if (value) {
+            let lineHeight = 20;
+            let numlines = Math.ceil(value.length / 36);
+            let newHeight = ((numlines < 2 ? 2 : numlines) * lineHeight) + 10;
+            return newHeight < 150 ? newHeight : 150;
+        }
+        else {
+            return 40;
+        }
+    }
+
+    public titleChange(newVal: string) {
+        this.item.title = newVal;
+        this.backlogService.updatePtItem(this.item);
+    }
+
+    public descriptionChange(newVal: string) {
+        this.item.description = newVal;
+        this.backlogService.updatePtItem(this.item);
     }
 
     public showTypeModal() {
