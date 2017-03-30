@@ -45,11 +45,6 @@ export class LoginComponent implements OnInit {
         this.page.actionBarHidden = true;
     }
 
-    public loginTapped(btn: Button) {
-        //alert('login tapped: ' + args.object);
-        btn.text = 'Loggin in...';
-    }
-
     public login() {
         this.isLoading = true;
         this.loginInputs.className = '';
@@ -66,7 +61,7 @@ export class LoginComponent implements OnInit {
                         });
                 }
                 else {
-                    console.log('login successful');
+                    alert('login successful');
                 }
                 this.isLoading = false;
             },
