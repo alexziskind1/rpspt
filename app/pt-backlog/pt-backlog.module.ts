@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 //nativescript imports
 import { NativeScriptModule } from "nativescript-angular/platform";
+import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 import { SIDEDRAWER_DIRECTIVES } from "nativescript-telerik-ui/sidedrawer/angular";
 
 import { BacklogService } from '../services';
@@ -15,6 +16,7 @@ import { PipesModule } from './pipes/pipes.module';
 @NgModule({
     imports: [
         NativeScriptModule,
+        NativeScriptFormsModule,
         PTItemModule,
         PipesModule
     ],
