@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 
 import { ModalDialogService, ModalDialogOptions } from 'nativescript-angular/modal-dialog';
+import { confirm, action, ActionOptions, ConfirmOptions } from 'ui/dialogs';
 
 import { BacklogService } from '../../services/backlog.service';
 import { ItemTypeEnum, PriorityEnum, StatusEnum } from '../../shared/static-data';
@@ -80,6 +81,30 @@ export class PTItemDetailsComponent implements OnInit {
             if (res) {
                 console.log(res);
                 this.item.type = res;
+            }
+        });
+    }
+
+    public showStatusOptions() {
+        let statusKeys = [];
+        let statuses = [];
+        for (var enumMember in StatusEnum) {
+            var isValueProperty = parseInt(enumMember, 10) >= 0;
+            if (isValueProperty) {
+                statuses.push(StatusEnum[enumMember]);
+                statusKeys.push({ key: enumMember, value: StatusEnum[enumMember] });
+            }
+        }
+
+        var options: ActionOptions = {
+            title: 'Select Status',
+            cancelButtonText: 'Cancel',
+            actions: statuses
+        };
+
+        action(options).then((result) => {
+            if (result != 'Cancel') {
+                this.backlogService.updatePtItemStatus(this.item, result);
             }
         });
     }

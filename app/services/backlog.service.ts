@@ -63,6 +63,16 @@ export class BacklogService {
 
     }
 
+    public updatePtItemStatus(item: IPTItem, newStatusStr: string) {
+        let newStatus = StatusEnum[newStatusStr];
+        if (item.status != newStatus) {
+            item.status = newStatus;
+            //this.publishUpdates();
+            let selectedItem = _.find(this._allItems, i => i.id == item.id);
+            selectedItem.status = newStatus;
+        }
+    }
+
     public filter(selectedViewIndex: number) {
         var filteredItems = [];
         switch (selectedViewIndex) {

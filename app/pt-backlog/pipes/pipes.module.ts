@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 
 import {
+    EstimateDisplayPipe,
+    PriorityClassPipe,
+    PriorityDisplayPipe,
+    StatusDisplayPipe,
     TypeDisplayPipe,
     TypeImagePipe
 } from './';
@@ -8,10 +12,18 @@ import {
 @NgModule({
     imports: [],
     declarations: [
+        EstimateDisplayPipe,
+        PriorityClassPipe,
+        PriorityDisplayPipe,
+        StatusDisplayPipe,
         TypeDisplayPipe,
         TypeImagePipe
     ],
     exports: [
+        EstimateDisplayPipe,
+        PriorityClassPipe,
+        PriorityDisplayPipe,
+        StatusDisplayPipe,
         TypeDisplayPipe,
         TypeImagePipe
     ]
