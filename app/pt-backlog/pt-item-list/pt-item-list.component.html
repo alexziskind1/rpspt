@@ -1,4 +1,4 @@
-<ListView class="items-list" [items]="ptItems" (itemTap)="listItemTap($event)">
+<ListView class="items-list" [items]="backlogService.filteredItems" (itemTap)="listItemTap($event)">
     <template let-item="item" let-i="index">
         <GridLayout class="li-wrapper" rows="60" columns="10, 50,  *, 100">
             <StackLayout class="li-indicator" col="0">

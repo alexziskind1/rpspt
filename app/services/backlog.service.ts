@@ -18,9 +18,14 @@ import INewComment = PTDomain.INewComment;
 @Injectable()
 export class BacklogService {
     private _allItems: Array<IPTItem> = [];
+    private _filteredItems: Array<IPTItem> = [];
 
     public get items() {
         return this._allItems;
+    }
+
+    public get filteredItems() {
+        return this._filteredItems;
     }
 
     constructor(
@@ -56,6 +61,24 @@ export class BacklogService {
 
     public updatePtItem(item: IPTItem) {
 
+    }
+
+    public filter(selectedViewIndex: number) {
+        var filteredItems = [];
+        switch (selectedViewIndex) {
+            case 0:
+                filteredItems = this._allItems.filter(i => i.assignee.fullName === 'Alex Ziskind');
+                break;
+            case 1:
+                filteredItems = this._allItems.filter(i => i.status === StatusEnum.Open || i.status === StatusEnum.ReOpened);
+                break;
+            case 2:
+                filteredItems = this._allItems.filter(i => i.status === StatusEnum.Closed);
+                break;
+            default:
+                filteredItems = this._allItems;
+        }
+        this._filteredItems = filteredItems;
     }
 }
 
