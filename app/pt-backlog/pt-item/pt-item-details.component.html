@@ -21,7 +21,7 @@
                         <Label col="0" text="Type" class="form-field-col"></Label>
                         <StackLayout col="1" #itemTypeName orientation="horizontal" class="form-field-col right">
                             <Image [src]="item.type | typeImage" class="input-img"></Image>
-                            <Label [text]="item.type" class="input"></Label>
+                            <Label [text]="item.type | typeDisplay" class="input"></Label>
                         </StackLayout>
                     </GridLayout>
                 </StackLayout>

@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 
 import {
-    TypeImagePipe,
+    TypeDisplayPipe,
+    TypeImagePipe
 } from './';
 
 @NgModule({
     imports: [],
     declarations: [
-        TypeImagePipe,
+        TypeDisplayPipe,
+        TypeImagePipe
     ],
     exports: [
+        TypeDisplayPipe,
         TypeImagePipe
     ]
 })
