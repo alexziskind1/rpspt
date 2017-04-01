@@ -40,7 +40,7 @@
                         <Label col="0" text="Estimate" class="form-field-col"></Label>
                         <Label col="1" [text]="item.estimate" class="form-field-col input right"></Label>
                         <StackLayout col="2" class="form-field-col">
-                            <inc-dec></inc-dec>
+                            <inc-dec (notifyIncDecTapped)="estimateIncDecTapped($event)"></inc-dec>
                         </StackLayout>
                     </GridLayout>
                 </StackLayout>

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 
 
 @Component({
@@ -9,12 +9,16 @@ import { Component } from "@angular/core";
 })
 export class IncDecComponent {
 
+    @Output() notifyIncDecTapped: EventEmitter<boolean> = new EventEmitter<boolean>();
+
     public decTap() {
         //Emit event
+        this.notifyIncDecTapped.emit(false);
     }
 
     public incTap() {
         //Emit event
+        this.notifyIncDecTapped.emit(true);
     }
 }
 
