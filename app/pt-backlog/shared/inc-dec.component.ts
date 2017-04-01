@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 
 
 @Component({
@@ -10,6 +10,8 @@ import { Component, Output, EventEmitter } from "@angular/core";
 export class IncDecComponent {
 
     @Output() notifyIncDecTapped: EventEmitter<boolean> = new EventEmitter<boolean>();
+    @Input() decEnabled: boolean = true;
+    @Input() incEnabled: boolean = true;
 
     public decTap() {
         //Emit event
