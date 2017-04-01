@@ -19,6 +19,14 @@ export class PTItemDetailsComponent implements OnInit {
 
     public formFieldGridCols = '90, *, 90 ';
 
+    public get priorityDecEnabled() {
+        return !PriorityEnum.isMin(this.item.priority);
+    }
+
+    public get priorityIncEnabled() {
+        return !PriorityEnum.isMax(this.item.priority);
+    }
+
     constructor(
         private backlogService: BacklogService,
         private modalService: ModalDialogService,
@@ -54,6 +62,11 @@ export class PTItemDetailsComponent implements OnInit {
     public estimateIncDecTapped(incdec: boolean) {
         this.item.estimate = incdec ? this.item.estimate + 1 : this.item.estimate - 1;
         //this.backlogService.updatePtItemEstimate(this.item, incdec);
+    }
+
+    public priorityIncDecTapped(incdec: boolean) {
+        this.item.priority = incdec ? this.item.priority + 1 : this.item.priority - 1;
+        //this.backlogService.updatePtItemPriority(this.item, incdec);
     }
 
     public showTypeModal() {
