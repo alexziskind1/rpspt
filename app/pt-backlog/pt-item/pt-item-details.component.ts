@@ -51,6 +51,11 @@ export class PTItemDetailsComponent implements OnInit {
         this.backlogService.updatePtItem(this.item);
     }
 
+    public estimateIncDecTapped(incdec: boolean) {
+        this.item.estimate = incdec ? this.item.estimate + 1 : this.item.estimate - 1;
+        //this.backlogService.updatePtItemEstimate(this.item, incdec);
+    }
+
     public showTypeModal() {
         const options: ModalDialogOptions = {
             context: { itemTitle: this.item.title, promptMsg: "Select item type" },

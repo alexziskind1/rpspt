@@ -5,6 +5,7 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms";
 
 import { PTItemComponent } from './pt-item.component';
 import { PTItemDetailsComponent } from './pt-item-details.component';
+import { IncDecComponent } from '../shared/inc-dec.component';
 
 import { ItemTypePickerModalComponent } from '../shared/item-type-picker-modal.component';
 
@@ -17,7 +18,8 @@ import { ItemTypePickerModalComponent } from '../shared/item-type-picker-modal.c
     declarations: [
         PTItemComponent,
         PTItemDetailsComponent,
-        ItemTypePickerModalComponent
+        ItemTypePickerModalComponent,
+        IncDecComponent
     ],
     providers: [],
     entryComponents: [
