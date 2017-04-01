@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
 
+import {
+    TypeImagePipe,
+} from './';
 
 @NgModule({
     imports: [],
-    exports: [],
-    declarations: [],
-    providers: [],
+    declarations: [
+        TypeImagePipe,
+    ],
+    exports: [
+        TypeImagePipe
+    ]
 })
 export class PipesModule { }

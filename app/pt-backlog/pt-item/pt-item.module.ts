@@ -9,10 +9,13 @@ import { IncDecComponent } from '../shared/inc-dec.component';
 
 import { ItemTypePickerModalComponent } from '../shared/item-type-picker-modal.component';
 
+import { PipesModule } from '../pipes/pipes.module';
+
 @NgModule({
     imports: [
         NativeScriptModule,
-        NativeScriptFormsModule
+        NativeScriptFormsModule,
+        PipesModule
     ],
     exports: [PTItemComponent],
     declarations: [
