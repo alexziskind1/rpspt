@@ -59,18 +59,67 @@ export class BacklogService {
         this._allItems.push(item);
     }
 
-    public updatePtItem(item: IPTItem) {
+    public updatePtItemTitle(item: IPTItem, newTitle: string) {
+        if (item.title != newTitle) {
+            let selectedItem = _.find(this._allItems, i => i.id == item.id);
+            selectedItem.title = newTitle;
+        }
+    }
 
+    public updatePtItemDescription(item: IPTItem, newDescription: string) {
+        if (item.description != newDescription) {
+            let selectedItem = _.find(this._allItems, i => i.id == item.id);
+            selectedItem.description = newDescription;
+        }
+    }
+
+    public updatePtItemType(item: IPTItem, newType: ItemTypeEnum) {
+        if (item.type != newType) {
+            item.type = newType;
+            let selectedItem = _.find(this._allItems, i => i.id == item.id);
+            selectedItem.type = newType;
+        }
     }
 
     public updatePtItemStatus(item: IPTItem, newStatusStr: string) {
         let newStatus = StatusEnum[newStatusStr];
         if (item.status != newStatus) {
             item.status = newStatus;
-            //this.publishUpdates();
             let selectedItem = _.find(this._allItems, i => i.id == item.id);
             selectedItem.status = newStatus;
         }
+    }
+
+    public updatePtItemAssignee(item: IPTItem, user: IUser) {
+        if (item.assignee != user) {
+            item.assignee = user;
+            let selectedItem = _.find(this._allItems, i => i.id == item.id);
+            selectedItem.assignee = user;
+        }
+    }
+
+    public updatePtItemEstimate(item: IPTItem, incdec: boolean) {
+        if (item.estimate === 0 && !incdec) return;
+        let selectedItem = _.find(this._allItems, i => i.id == item.id);
+
+        selectedItem.estimate = incdec ? selectedItem.estimate + 1 : selectedItem.estimate - 1;
+    }
+
+    public updatePtItemPriority(item: IPTItem, incdec: boolean) {
+        if (PriorityEnum.isMax(item.priority) && incdec) return;
+        if (PriorityEnum.isMin(item.priority) && !incdec) return;
+
+        if (incdec) {
+            item.priority = PriorityEnum.nextPriority(item.priority);
+        } else {
+            item.priority = PriorityEnum.previousPriority(item.priority);
+        }
+        this.publishItemUpdate(item);
+    }
+
+    private publishItemUpdate(item: IPTItem) {
+        let selectedItem = _.find(this._allItems, i => i.id == item.id);
+        selectedItem = item;
     }
 
     public filter(selectedViewIndex: number) {

@@ -7,8 +7,10 @@ import { BacklogService } from '../../services/backlog.service';
 import { ItemTypeEnum, PriorityEnum, StatusEnum } from '../../shared/static-data';
 import { PTDomain } from '../../typings/domain';
 import IPTItem = PTDomain.IPTItem;
+import IUser = PTDomain.IUser;
 
 import { ItemTypePickerModalComponent } from "../shared/item-type-picker-modal.component";
+import { UserPickerModalComponent } from '../shared/user-picker-modal.component';
 
 @Component({
     moduleId: module.id,
@@ -51,23 +53,19 @@ export class PTItemDetailsComponent implements OnInit {
     }
 
     public titleChange(newVal: string) {
-        this.item.title = newVal;
-        this.backlogService.updatePtItem(this.item);
+        this.backlogService.updatePtItemTitle(this.item, newVal);
     }
 
     public descriptionChange(newVal: string) {
-        this.item.description = newVal;
-        this.backlogService.updatePtItem(this.item);
+        this.backlogService.updatePtItemDescription(this.item, newVal);
     }
 
     public estimateIncDecTapped(incdec: boolean) {
-        this.item.estimate = incdec ? this.item.estimate + 1 : this.item.estimate - 1;
-        //this.backlogService.updatePtItemEstimate(this.item, incdec);
+        this.backlogService.updatePtItemEstimate(this.item, incdec);
     }
 
     public priorityIncDecTapped(incdec: boolean) {
-        this.item.priority = incdec ? this.item.priority + 1 : this.item.priority - 1;
-        //this.backlogService.updatePtItemPriority(this.item, incdec);
+        this.backlogService.updatePtItemPriority(this.item, incdec);
     }
 
     public showTypeModal() {
@@ -79,8 +77,7 @@ export class PTItemDetailsComponent implements OnInit {
 
         this.modalService.showModal(ItemTypePickerModalComponent, options).then((res: ItemTypeEnum) => {
             if (res) {
-                console.log(res);
-                this.item.type = res;
+                this.backlogService.updatePtItemType(this.item, res);
             }
         });
     }
@@ -105,6 +102,20 @@ export class PTItemDetailsComponent implements OnInit {
         action(options).then((result) => {
             if (result != 'Cancel') {
                 this.backlogService.updatePtItemStatus(this.item, result);
+            }
+        });
+    }
+
+    public showAssigneeModal() {
+        const options: ModalDialogOptions = {
+            context: { itemTitle: this.item.title, promptMsg: "Select assignee" },
+            fullscreen: true,
+            viewContainerRef: this.vcRef
+        };
+
+        this.modalService.showModal(UserPickerModalComponent, options).then((res: IUser) => {
+            if (res) {
+                this.backlogService.updatePtItemAssignee(this.item, res);
             }
         });
     }

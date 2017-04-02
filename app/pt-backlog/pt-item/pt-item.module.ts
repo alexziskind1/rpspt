@@ -8,6 +8,7 @@ import { PTItemDetailsComponent } from './pt-item-details.component';
 import { IncDecComponent } from '../shared/inc-dec.component';
 
 import { ItemTypePickerModalComponent } from '../shared/item-type-picker-modal.component';
+import { UserPickerModalComponent } from '../shared/user-picker-modal.component';
 
 import { PipesModule } from '../pipes/pipes.module';
 
@@ -22,11 +23,13 @@ import { PipesModule } from '../pipes/pipes.module';
         PTItemComponent,
         PTItemDetailsComponent,
         ItemTypePickerModalComponent,
+        UserPickerModalComponent,
         IncDecComponent
     ],
     providers: [],
     entryComponents: [
-        ItemTypePickerModalComponent
+        ItemTypePickerModalComponent,
+        UserPickerModalComponent
     ]
 })
 export class PTItemModule { }
