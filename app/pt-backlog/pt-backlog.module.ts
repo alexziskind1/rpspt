@@ -5,6 +5,7 @@ import { NativeScriptModule } from "nativescript-angular/platform";
 import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 import { SIDEDRAWER_DIRECTIVES } from "nativescript-telerik-ui/sidedrawer/angular";
 
+import { BacklogRoutingModule } from './pt-backlog.routing';
 import { BacklogService } from '../services';
 import { MockDataService } from '../services/mock-data.service';
 import { PTBacklogComponent } from './pt-backlog.component';
@@ -17,6 +18,7 @@ import { PipesModule } from './pipes/pipes.module';
     imports: [
         NativeScriptModule,
         NativeScriptFormsModule,
+        BacklogRoutingModule,
         PTItemModule,
         PipesModule
     ],

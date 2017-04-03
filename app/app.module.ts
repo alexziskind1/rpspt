@@ -6,6 +6,7 @@ import { NativeScriptModule } from "nativescript-angular/platform";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 
 //app imports
+import { AppRoutingModule } from './app.routing';
 import { AppComponent } from "./app.component";
 import { LoginModule } from "./pt-login/pt-login.module";
 import { PTBacklogModule } from "./pt-backlog/pt-backlog.module";
@@ -24,6 +25,7 @@ setStatusBarColors();
     imports: [
         NativeScriptModule,
         NativeScriptRouterModule,
+        AppRoutingModule,
         LoginModule,
         PTBacklogModule
     ],
