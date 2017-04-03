@@ -1,7 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { RouterExtensions } from 'nativescript-angular/router';
-
 import { BacklogService } from '../../services';
 import { ItemTypeEnum, PriorityEnum, StatusEnum } from '../../shared/static-data';
 import { PTDomain } from '../../typings/domain';
@@ -26,8 +24,7 @@ export class PTItemListComponent implements OnInit {
     }
 
     constructor(
-        private backlogService: BacklogService,
-        private _routerExtensions: RouterExtensions
+        private backlogService: BacklogService
     ) { }
 
     ngOnInit() {
@@ -38,10 +35,10 @@ export class PTItemListComponent implements OnInit {
         this.backlogService.filter(this.selectedViewIndex);
     }
 
-    public listItemTap(args) {
+    public listItemTap(args: any) {
         let lv = args.object;
         let item = <IPTItem>lv.items[args.index];
-        this._routerExtensions.navigate(['/pt-item', item.id]);
+        alert(item.title);
     }
 
     public getIndicatorClass(item: IPTItem) {

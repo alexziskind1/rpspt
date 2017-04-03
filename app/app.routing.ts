@@ -2,8 +2,10 @@ import { NgModule } from "@angular/core";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { Routes } from "@angular/router";
 
+import { PTBacklogComponent } from "./pt-backlog/pt-backlog.component";
+
 const routes: Routes = [
-    { path: '', redirectTo: '/pt-backlog', pathMatch: 'full' }
+    { path: '', component: PTBacklogComponent }
 ];
 
 @NgModule({
