@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
 
 import { ModalDialogService, ModalDialogOptions } from 'nativescript-angular/modal-dialog';
 import { confirm, action, ActionOptions, ConfirmOptions } from 'ui/dialogs';
@@ -18,6 +18,8 @@ import { UserPickerModalComponent } from '../shared/user-picker-modal.component'
     templateUrl: 'pt-item-details.component.html'
 })
 export class PTItemDetailsComponent implements OnInit {
+    @Input() itemId: string;
+
     public item: IPTItem;
 
     public formFieldGridCols = '90, *, 90 ';
@@ -37,7 +39,9 @@ export class PTItemDetailsComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.item = this.backlogService.items[0];
+        console.log(this.itemId);
+        this.backlogService.getItem(this.itemId)
+            .then(i => this.item = i);
     }
 
     public textViewFieldHeight(value: string): number {

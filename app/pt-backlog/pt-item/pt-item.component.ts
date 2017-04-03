@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { ModalDialogService, ModalDialogOptions } from 'nativescript-angular/modal-dialog';
 import { SegmentedBar, SegmentedBarItem } from 'ui/segmented-bar';
@@ -28,6 +29,7 @@ export class PTItemComponent implements OnInit {
     public item: IPTItem;
 
     constructor(
+        private route: ActivatedRoute,
         private backlogService: BacklogService,
         private modalService: ModalDialogService,
         private vcRef: ViewContainerRef
@@ -40,8 +42,9 @@ export class PTItemComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.backlogService.getItem('2')
-            .then((item) => {
+        this.route.params
+            .switchMap((params: Params) => this.backlogService.getItem(params['id']))
+            .subscribe((item: IPTItem) => {
                 this.item = item;
             });
     }
