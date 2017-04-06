@@ -55,6 +55,10 @@ export class PTItemComponent implements OnInit {
             });
     }
 
+    public onNavBackTap() {
+        this.routerExtensions.backToPreviousPage();
+    }
+
     public selectedItemDetailScreenIndexChanged(segBar: SegmentedBar) {
         let newIndex = segBar.selectedIndex;
         if (this._selectedItemDetailScreenIndex !== newIndex && newIndex >= 0 && newIndex < this._itemDetailScreens.length) {
