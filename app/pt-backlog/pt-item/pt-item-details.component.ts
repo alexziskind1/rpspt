@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, ViewContainerRef } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { ModalDialogService, ModalDialogOptions } from 'nativescript-angular/modal-dialog';
 import { confirm, action, ActionOptions, ConfirmOptions } from 'ui/dialogs';
@@ -33,15 +34,18 @@ export class PTItemDetailsComponent implements OnInit {
     }
 
     constructor(
+        private route: ActivatedRoute,
         private backlogService: BacklogService,
         private modalService: ModalDialogService,
         private vcRef: ViewContainerRef
     ) { }
 
     ngOnInit() {
-        console.log(this.itemId);
-        this.backlogService.getItem(this.itemId)
-            .then(i => this.item = i);
+        this.route.parent.params
+            .switchMap((params: Params) => this.backlogService.getItem(params['id']))
+            .subscribe((item: IPTItem) => {
+                this.item = item;
+            });
     }
 
     public textViewFieldHeight(value: string): number {

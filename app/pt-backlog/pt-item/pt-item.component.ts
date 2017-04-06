@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
+import { RouterExtensions } from 'nativescript-angular/router';
+
 import { ModalDialogService, ModalDialogOptions } from 'nativescript-angular/modal-dialog';
 import { SegmentedBar, SegmentedBarItem } from 'ui/segmented-bar';
 
@@ -27,9 +29,12 @@ export class PTItemComponent implements OnInit {
     ];
     public myNavItems: Array<SegmentedBarItem> = [];
     public item: IPTItem;
+    private _selectedItemDetailScreenIndex: number = 0;
+
 
     constructor(
         private route: ActivatedRoute,
+        private routerExtensions: RouterExtensions,
         private backlogService: BacklogService,
         private modalService: ModalDialogService,
         private vcRef: ViewContainerRef
@@ -51,7 +56,12 @@ export class PTItemComponent implements OnInit {
 
     public selectedItemDetailScreenIndexChanged(segBar: SegmentedBar) {
         let newIndex = segBar.selectedIndex;
-        console.log('selected index: ' + newIndex);
+        if (this._selectedItemDetailScreenIndex !== newIndex && newIndex >= 0 && newIndex < this._itemDetailScreens.length) {
+            this._selectedItemDetailScreenIndex = newIndex;
+            let path = this._itemDetailScreens[this._selectedItemDetailScreenIndex].routePath;
+            // Navigate with relative link
+            this.routerExtensions.navigate([path], { relativeTo: this.route });
+        }
     }
 
 }
