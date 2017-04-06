@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
+import { RouterExtensions } from 'nativescript-angular/router';
 import { Page } from 'ui/page';
 import { View } from 'ui/core/view';
 import { Button } from 'ui/button';
@@ -34,12 +35,13 @@ export class LoginComponent implements OnInit {
         return this.btnLoginRef.nativeElement;
     }
 
-    public loginModel: ILoginModel = { username: 'alexziskind', password: 'bad_password' };
+    public loginModel: ILoginModel = { username: 'alexziskind', password: DEMO_PASSWORD };
 
     constructor(
         private page: Page,
-        private authService: AuthenticationService
-    ) { }
+        private router: RouterExtensions,
+        private authService: AuthenticationService) {
+    }
 
     ngOnInit() {
         this.page.actionBarHidden = true;
@@ -61,7 +63,8 @@ export class LoginComponent implements OnInit {
                         });
                 }
                 else {
-                    alert('login successful');
+                    this.router.navigate(["/"], { clearHistory: true });
+
                 }
                 this.isLoading = false;
             },

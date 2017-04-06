@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 
 import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 
+import { LoginRoutingModule } from './pt-login.routing';
 import { LoginComponent } from './pt-login.component';
 
 @NgModule({
     imports: [
-        NativeScriptFormsModule
+        NativeScriptFormsModule,
+        LoginRoutingModule
     ],
     exports: [LoginComponent],
     declarations: [LoginComponent],

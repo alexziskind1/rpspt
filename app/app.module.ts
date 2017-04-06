@@ -7,6 +7,7 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 
 //app imports
 import { AppRoutingModule } from './app.routing';
+import { AuthGuard } from './services/auth-guard.service';
 import { AppComponent } from "./app.component";
 import { LoginModule } from "./pt-login/pt-login.module";
 import { PTBacklogModule } from "./pt-backlog/pt-backlog.module";
@@ -31,7 +32,8 @@ setStatusBarColors();
     ],
     providers: [
         UserService,
-        AuthenticationService
+        AuthenticationService,
+        [AuthGuard]
     ],
     schemas: [
         NO_ERRORS_SCHEMA

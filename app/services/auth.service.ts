@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 
+import * as appSettingsModule from "application-settings";
+
 import { Observable, Observer } from 'rxjs/Rx';
+
+import { UserService } from './';
 
 import { DEMO_PASSWORD } from '../shared/constants';
 import { PTDomain } from '../typings/domain';
@@ -9,15 +13,22 @@ import IUser = PTDomain.IUser;
 @Injectable()
 export class AuthenticationService {
 
-    constructor() { }
+    public currentUser: IUser;
+
+    constructor(private userService: UserService) {
+
+        userService.usersObs.subscribe((d) => {
+            this.currentUser = d[0];
+        });
+    }
 
     public login(username: string, password: string) {
         return Observable.create((observer: Observer<IUser>) => {
             //simulate logging in
             if (password === DEMO_PASSWORD) {
                 setTimeout(() => {
-                    let fakeUser: IUser = { id: '1', fullName: 'Alex Ziskind', avatar: '' };
-                    observer.next(fakeUser);
+                    observer.next(this.currentUser);
+                    appSettingsModule.setString('CurrentUser', JSON.stringify(this.currentUser));
                 }, 3000);
             } else {
                 setTimeout(() => {
@@ -28,6 +39,10 @@ export class AuthenticationService {
     }
 
     public logout() {
-        console.log('logging out');
+        appSettingsModule.remove('CurrentUser');
+    }
+
+    static isLoggedIn(): boolean {
+        return !!appSettingsModule.getString('CurrentUser');
     }
 }

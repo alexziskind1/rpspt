@@ -4,10 +4,13 @@ import { Routes, RouterModule } from "@angular/router";
 import { PTBacklogComponent } from "./pt-backlog.component";
 import { PTItemComponent } from "./pt-item/pt-item.component";
 
+import { AuthGuard } from '../services/auth-guard.service';
+
 const backlogRoutes: Routes = [
     {
         path: "pt-backlog",
-        component: PTBacklogComponent
+        component: PTBacklogComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: "pt-item/:id",

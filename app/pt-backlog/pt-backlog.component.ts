@@ -1,10 +1,11 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ViewContainerRef } from '@angular/core';
 
+import { RouterExtensions } from 'nativescript-angular/router';
 import { RadSideDrawerComponent, SideDrawerType } from 'nativescript-telerik-ui/sidedrawer/angular';
 import { SideDrawerLocation } from 'nativescript-telerik-ui/sidedrawer';
 import { ModalDialogService, ModalDialogOptions } from 'nativescript-angular/modal-dialog';
 
-import { BacklogService } from '../services';
+import { BacklogService, AuthenticationService } from '../services';
 import { AddItemModalComponent } from "./shared/add-item-modal.component";
 import { PTDomain } from '../typings/domain';
 import INewItem = PTDomain.INewItem;
@@ -22,7 +23,9 @@ export class PTBacklogComponent implements OnInit {
 
     public selectedViewIndex: number;
 
-    constructor(private backlogService: BacklogService,
+    constructor(private router: RouterExtensions,
+        private backlogService: BacklogService,
+        private authService: AuthenticationService,
         private modalService: ModalDialogService,
         private vcRef: ViewContainerRef) {
         this.selectedViewIndex = 1;
@@ -58,6 +61,7 @@ export class PTBacklogComponent implements OnInit {
     }
 
     public logoutTap() {
-        alert('LOGOUT');
+        this.authService.logout();
+        this.router.navigate(["/login"], { clearHistory: true });
     }
 }
