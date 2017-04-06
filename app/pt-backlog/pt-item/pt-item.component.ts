@@ -5,6 +5,7 @@ import { RouterExtensions } from 'nativescript-angular/router';
 
 import { ModalDialogService, ModalDialogOptions } from 'nativescript-angular/modal-dialog';
 import { SegmentedBar, SegmentedBarItem } from 'ui/segmented-bar';
+import { confirm, action, ActionOptions, ConfirmOptions } from 'ui/dialogs';
 
 import { BacklogService } from '../../services';
 import { ItemTypeEnum, PriorityEnum, StatusEnum } from '../../shared/static-data';
@@ -62,6 +63,34 @@ export class PTItemComponent implements OnInit {
             // Navigate with relative link
             this.routerExtensions.navigate([path], { relativeTo: this.route });
         }
+    }
+
+    public onDelete() {
+        //Simple approach
+        //if (confirm('Are you sure you want to delete this item?')) {
+
+        //}
+
+        //Better approach with promise
+        var options: ConfirmOptions = {
+            title: "Delete Item",
+            message: "Are you sure you want to delete this item?",
+            okButtonText: "Yes",
+            cancelButtonText: "Cancel"
+        };
+        //confirm without options, with promise
+        confirm('Are you sure you want to delete this item?')
+            //confirm with options, with promise
+            //confirm(options)
+            .then((result: boolean) => {
+                // result can be true/false/undefined
+                if (result) {
+                    this.backlogService.deleteItem(this.item);
+                    setTimeout(() => {
+                        this.routerExtensions.backToPreviousPage();
+                    }, 100);
+                }
+            });
     }
 
 }

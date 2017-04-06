@@ -122,6 +122,11 @@ export class BacklogService {
         selectedItem = item;
     }
 
+    public deleteItem(item: IPTItem) {
+        _.remove(this._allItems, (ptitem) => ptitem.id === item.id);
+        this.filter(1);
+    }
+
     public filter(selectedViewIndex: number) {
         var filteredItems = [];
         switch (selectedViewIndex) {
